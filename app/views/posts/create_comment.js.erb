@@ -1,0 +1,5 @@
+alert("댓글이 등록됨");
+
+$('body').val("");
+$('#comment_table tbody').append('<tr><td><%=@c.body %></td></tr>');
+<!--인풋은 태그 확인 아이디가 body -->
