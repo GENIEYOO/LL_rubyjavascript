@@ -71,7 +71,7 @@ class PostsController < ApplicationController
     #     format.js { render 'please_login.js.erb'}
     #   end
     # else
-      # puts params[:body]
+      puts params[:body]
       @c = @post.comments.create(comment_params)
     # end
   end
