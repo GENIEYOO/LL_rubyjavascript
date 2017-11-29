@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy, :create_comment, :like_post]
-  before_action :is_login?, only: [:create_comment, :like_post]
+  before_action :is_login?, only: [:create_comment, :like_post, :destroy_comment]
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.order("created_at DESC").page(params[:page])
   end
 
   # GET /posts/1
@@ -77,6 +77,7 @@ class PostsController < ApplicationController
   end
   
   def destroy_comment
+    @c= Comment.find(params[:comment_id]).destroy
     
     # # unless user_signed_in?
     # #   respond_to do |format|
@@ -113,6 +114,9 @@ class PostsController < ApplicationController
     # end
   end
 
+  def page_scroll
+   @posts = Post.order("created_at DESC").page(params[:page])
+  end
   private
   
     def is_login?

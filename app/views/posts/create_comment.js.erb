@@ -1,5 +1,11 @@
 alert("댓글이 등록됨");
 
 $('body').val("");
-$('#comment_table tbody').append('<tr><td><%=@c.body %></td></tr>');
+$('#comment_table tbody').append(`
+    <tr>
+        <td><%=@c.body %></td>
+        <td><%= link_to 'Destroy',method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+`
+);
 <!--인풋은 태그 확인 아이디가 body -->
